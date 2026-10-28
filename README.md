@@ -4,8 +4,7 @@ This repository hosts the trained model used by **The NCDL Explainer**, an inter
 
 ## Read the explainer
 
-- **Website (interactive):** <PASTE YOUR LIVE WEBSITE LINK>
-- **Notebook (Google Colab):** <PASTE YOUR COLAB LINK>
+- **Website (interactive):** <[LINK](https://visagg.cpsc.ucalgary.ca/ncdl-explainer/)>
 - **Website source code:** <PASTE YOUR WEBSITE REPOSITORY LINK>
 
 The explainer's Section 9 runs this model on an image you upload or a digit you draw, and shows the output of every layer.
