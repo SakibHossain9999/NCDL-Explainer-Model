@@ -1,10 +1,18 @@
-# NCDL Explainer — Trained Model
+# NCDL Explainer: Trained Model
 
-This repository hosts the trained model weights used by the interactive NCDL Explainer notebook, a companion piece to the paper *NCDL: A Framework for Deep Learning on non-Cartesian Lattices* (Horacsek and Alim, NeurIPS 2023).
+This repository hosts the trained model used by **The NCDL Explainer**, an interactive, visual companion to the paper *NCDL: A Framework for Deep Learning on Non-Cartesian Lattices* (Horacsek and Alim, NeurIPS 2023). The explainer was presented at VISxAI 2026 (IEEE VIS 2026).
+
+## Read the explainer
+
+- **Website (interactive):** <PASTE YOUR LIVE WEBSITE LINK>
+- **Notebook (Google Colab):** <PASTE YOUR COLAB LINK>
+- **Website source code:** <PASTE YOUR WEBSITE REPOSITORY LINK>
+
+The explainer's Section 9 runs this model on an image you upload or a digit you draw, and shows the output of every layer.
 
 ## What this is
 
-A small autoencoder, built entirely from the real NCDL library, trained to compress and reconstruct MNIST handwritten digits. Every operation in the model, convolution, pooling, downsampling, and upsampling, runs on a quincunx (checkerboard) lattice rather than an ordinary square grid, using NCDL's real, published code.
+A small autoencoder, built entirely from the real NCDL library, trained to compress and reconstruct MNIST handwritten digits. The model's convolution, downsampling and upsampling layers run on a quincunx (checkerboard) lattice rather than an ordinary square grid, using NCDL's real, published code. (The model does not use pooling.)
 
 ## Which parts of NCDL this model uses
 
@@ -43,7 +51,7 @@ Total parameters: 46,689.
 
 ## Dataset
 
-MNIST — 60,000 training images (54,000 train / 6,000 validation split) and 10,000 test images. Not included in this repository; downloaded automatically by `torchvision.datasets.MNIST(download=True)` the first time the training script runs.
+MNIST: 60,000 training images (54,000 train / 6,000 validation split) and 10,000 test images. Not included in this repository; downloaded automatically by `torchvision.datasets.MNIST(download=True)` the first time the training script runs.
 
 ## Training details
 
@@ -64,15 +72,21 @@ MNIST — 60,000 training images (54,000 train / 6,000 validation split) and 10,
 | PSNR | *(fill in)* |
 | SSIM | *(fill in)* |
 
-See `quantitative_results.png` for training curves and `qualitative_results.png` for example reconstructions.
+Training curves (left) and example reconstructions (right):
+
+![Quantitative results](quantitative_results.png)
+![Qualitative results](qualitative_results.png)
 
 ## Files in this repository
 
-- `model_best.pt` — trained weights (best validation checkpoint), used by the notebook
-- `train_model.py` — full training script
-- `results.py` — script generating the result images below
-- `training_metrics.json` — complete per-epoch training history
-- `qualitative_results.png`, `quantitative_results.png` — result images
+| File | What it is |
+|---|---|
+| `model_best.pt` | Trained weights (best validation checkpoint). This is the model the explainer uses |
+| `train_model.py` | Full training script, including the model definition |
+| `results.py` | Script that generates the result images |
+| `training_metrics.json` | Complete per-epoch training history |
+| `qualitative_results.png`, `quantitative_results.png` | Result images |
+| `lattices_figure.png` | The lattices figure shown in the explainer's introduction. **Please do not move or rename it**: the notebook loads it from this address |
 
 ## Using this model
 
@@ -84,3 +98,16 @@ model = SmallQuincunxAutoencoder()
 model.load_state_dict(torch.load('model_best.pt'))
 model.eval()
 ```
+
+## How the website uses it
+
+The website cannot run PyTorch, so the weights are converted once to the ONNX format (`model.onnx`, about 800 KB) and run inside the browser with ONNX Runtime Web. The converted file and the conversion scripts are in the website repository. Nothing the visitor uploads or draws leaves their browser.
+
+## Citation and credits
+
+- Horacsek and Alim (2023). [NCDL: A Framework for Deep Learning on Non-Cartesian Lattices](https://proceedings.neurips.cc/paper_files/paper/2023/hash/fab489de1a3224f0394d8f1d3c3213a8-Abstract-Conference.html). *Advances in Neural Information Processing Systems 36 (NeurIPS 2023)*.
+- The [NCDL library](https://github.com/jjh13/NCDL) and its documentation at [ncdl.ai](http://ncdl.ai), by Joshua Horacsek.
+
+## Authors
+
+Mohammad Sakib Hossain and Usman Alim, [Visualization and Graphics Group](https://visagg.cpsc.ucalgary.ca), Department of Computer Science, University of Calgary.
