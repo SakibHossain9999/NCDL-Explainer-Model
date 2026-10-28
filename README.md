@@ -1,6 +1,6 @@
 # NCDL Explainer: Trained Model
 
-This repository hosts the trained model used by **The NCDL Explainer**, an interactive, visual companion to the paper *NCDL: A Framework for Deep Learning on Non-Cartesian Lattices* (Horacsek and Alim, NeurIPS 2023). The explainer was presented at VISxAI 2026 (IEEE VIS 2026).
+This repository hosts the trained model used by the **NCDL Explainer: Non-Cartesian Deep Learning Explained**, an interactive, visual companion to the paper *NCDL: A Framework for Deep Learning on Non-Cartesian Lattices* (Horacsek and Alim, NeurIPS 2023). The explainer was presented at VISxAI 2026 (IEEE VIS 2026).
 
 ## Read the explainer
 
